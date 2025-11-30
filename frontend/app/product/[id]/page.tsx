@@ -267,6 +267,11 @@ export default function ProductPage() {
     )
   }
 
+  // Type guard - if we reach here, product must exist
+  if (!product) {
+    return null
+  }
+
   // 1 pound = 1 Dough point
   const loyaltyPoints = Math.floor(product.price)
 

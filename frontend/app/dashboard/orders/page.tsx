@@ -355,7 +355,7 @@ export default function OrdersAdminPage() {
                     cy="50%"
                     labelLine={false}
                     label={({ name, percent }) => 
-                      percent > 0.05 ? `${(percent * 100).toFixed(0)}%` : ''
+                      percent && percent > 0.05 ? `${(percent * 100).toFixed(0)}%` : ''
                     }
                     outerRadius={100}
                     innerRadius={50}
