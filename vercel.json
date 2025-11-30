@@ -1,5 +1,6 @@
 {
-  "buildCommand": "bash build.sh",
-  "installCommand": "echo 'Dependencies installed in build.sh'",
-  "outputDirectory": "frontend/.next"
+  "buildCommand": "./build.sh",
+  "installCommand": "npm install",
+  "outputDirectory": "frontend/.next",
+  "framework": null
 }
