@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  clerkId   String   @unique
+  email     String   @unique
+  role      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orders    Order[]
+  loyalty   LoyaltyHistory[]
+}
+
+model Product {
+  id          String  @id @default(uuid())
+  name        String
+  description String
+  price       Decimal @db.Decimal(10,2)
+  category    String
+  imageUrl    String? // Can be URL, base64 data URL, or null
+  stock       Int
+  isActive    Boolean @default(true)
+  packSize    Int?    @default(1) // 1 = single, 6, 12, 24 for packs
+  items       OrderItem[]
+}
+
+model Order {
+  id            String   @id @default(uuid())
+  orderNumber   String?  @unique // Custom display ID: DOUGH-YYYYMMDD-HHMMSS-SHORTID
+  userId        String
+  status        String
+  totalAmount   Decimal  @db.Decimal(10,2)
+  pointsRedeemed Int?    @default(0) // Points redeemed for this order
+  stripeId      String?
+  createdAt     DateTime @default(now())
+  user          User     @relation(fields: [userId], references: [id])
+  items         OrderItem[]
+  
+  // New fields
+  deliveryMethod String? // 'delivery' | 'pickup'
+  pickupTime     DateTime?
+  pickupLocation String?
+  deliveryFee    Decimal? @db.Decimal(10,2) @default(0)
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String
+  productId String
+  quantity  Int
+  unitPrice Decimal @db.Decimal(10,2)
+  order     Order   @relation(fields: [orderId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+model LoyaltyHistory {
+  id          String   @id @default(uuid())
+  userId      String
+  pointsDelta Int
+  reason      String
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id])
+}

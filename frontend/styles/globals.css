@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  scrollbar-gutter: stable;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: ui-sans-serif, system-ui
+}
+
+@layer base {
+  :root {
+    /* Colors extracted from logo.svg */
+    /* #7C3819 - Rich Brown (Primary) */
+    /* #E6D7B4 - Cream/Beige (Background/Secondary) */
+    /* #E2B347 - Golden Yellow (Accent) */
+    /* #FFEDBF - Light Cream (Light Accent) */
+    /* #FFFFFF - White */
+
+    /* Warm Cream Background - from logo #E6D7B4 */
+    --background: 40 40% 90%;
+    /* Rich Brown Foreground - from logo #7C3819 */
+    --foreground: 25 65% 28%;
+
+    /* White Card */
+    --card: 0 0% 100%;
+    --card-foreground: 25 65% 28%;
+
+    /* White Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 25 65% 28%;
+
+    /* Rich Brown Primary - from logo #7C3819 */
+    --primary: 25 65% 28%;
+    --primary-foreground: 40 40% 95%;
+
+    /* Cream Secondary - from logo #E6D7B4 */
+    --secondary: 40 35% 80%;
+    --secondary-foreground: 25 65% 28%;
+
+    /* Light Cream Muted - from logo #FFEDBF */
+    --muted: 45 50% 90%;
+    --muted-foreground: 25 40% 40%;
+
+    /* Golden Accent - from logo #E2B347 */
+    --accent: 45 70% 60%;
+    --accent-foreground: 25 65% 28%;
+
+    /* Error Red */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Light Brown Borders - from logo colors */
+    --border: 40 25% 80%;
+    --input: 40 25% 80%;
+    --ring: 25 65% 28%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Dark Chocolate Background */
+    --background: 25 35% 12%;
+    --foreground: 40 40% 97%;
+
+    --card: 25 30% 15%;
+    --card-foreground: 40 40% 97%;
+
+    --popover: 25 30% 15%;
+    --popover-foreground: 40 40% 97%;
+
+    /* Golden accent remains visible in dark mode */
+    --primary: 35 50% 55%;
+    --primary-foreground: 25 45% 15%;
+
+    --secondary: 25 20% 22%;
+    --secondary-foreground: 40 40% 97%;
+
+    --muted: 25 20% 22%;
+    --muted-foreground: 40 25% 65%;
+
+    --accent: 35 45% 50%;
+    --accent-foreground: 40 40% 97%;
+
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 25 20% 25%;
+    --input: 25 20% 25%;
+    --ring: 35 50% 55%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    scrollbar-gutter: stable;
+  }
+
+  @keyframes gradient {
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes float-delayed {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-30px);
+    }
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 15s ease infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float-delayed 8s ease-in-out infinite;
+    animation-delay: 1s;
+  }
+}
