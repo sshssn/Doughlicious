@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "setup": "node scripts/setup.js",
-    "build": "npm run build --prefix frontend",
+    "build": "cd frontend && npm install && npm run build",
     "dev": "node scripts/start-dev.js",
     "dev:backend": "pnpm --filter doughlicious-backend dev || npm run dev --prefix backend",
     "dev:frontend": "pnpm run sync-env && (pnpm --filter doughlicious-frontend dev || npm run dev --prefix frontend)",
